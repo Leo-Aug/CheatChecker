@@ -4,7 +4,6 @@
 	"name": "Java 8",
 	"build": {
 		"dockerfile": "Dockerfile",
-		"context": "..",
 		"args": {
 			// Use the VARIANT arg to pick a Debian OS version: buster, bullseye
 			// Use bullseye when running on local arm64/Apple Silicon.
@@ -45,5 +44,7 @@
 	"features": {
 		"git": "latest",
 		"python": "latest"
-	}
+	},
+
+	"postCreateCommand": "pip install -r requirements.txt"
 }
