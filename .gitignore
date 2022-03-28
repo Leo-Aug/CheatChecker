@@ -1,5 +1,5 @@
 # 忽略vscode配置文件夹
-.vscode
+.vscode/
 
 # 忽略测试文件目录
 testdatas/
