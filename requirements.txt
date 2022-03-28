@@ -1,0 +1,7 @@
+cffi==1.15.0
+chardet==4.0.0
+cryptography==36.0.2
+lxml==4.8.0
+pdfminer.six==20220319
+pycparser==2.21
+python-docx==0.8.11

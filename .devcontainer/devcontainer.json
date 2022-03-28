@@ -4,6 +4,7 @@
 	"name": "Java 8",
 	"build": {
 		"dockerfile": "Dockerfile",
+		"context": "..",
 		"args": {
 			// Use the VARIANT arg to pick a Debian OS version: buster, bullseye
 			// Use bullseye when running on local arm64/Apple Silicon.
@@ -17,7 +18,7 @@
 
 	// Set *default* container specific settings.json values on container create.
 	"settings": {
-		"java.home": "/docker-java-home",
+		"java.jdt.ls.java.home": "/docker-java-home",
 		"java.import.gradle.java.home": "/usr/local/sdkman/candidates/java/current",
 		"java.configuration.runtimes": [{
 			"default": true,
