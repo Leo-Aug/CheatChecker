@@ -23,9 +23,10 @@ def create_worddict(text):
         worddict[word] = worddict.get(word, 0) + 1
     return worddict
 
+
 def compare_text(text1, text2):
     """
-    Compare two texts.
+    Calculate the cosine similarity between two texts.
     """
 
     # 创建映射字典
@@ -33,11 +34,17 @@ def compare_text(text1, text2):
     worddict2 = create_worddict(text2)
 
     # 计算相似度
-    similarity = 0
+    numerator = 0
+    denominator1 = 0
+    denominator2 = 0
     for word in worddict1:
         if word in worddict2:
-            similarity += worddict1[word] * worddict2[word]
-    return similarity
+            numerator += worddict1[word] * worddict2[word]
+        denominator1 += worddict1[word] ** 2
+    for word in worddict2:
+        denominator2 += worddict2[word] ** 2
+    denominator = (denominator1 ** 0.5) * (denominator2 ** 0.5)
+    return numerator / denominator
 
 
 
