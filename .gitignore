@@ -3,3 +3,6 @@
 
 # 忽略测试文件目录
 testdatas/
+
+# 忽略__pycache__文件夹
+__pycache__/
