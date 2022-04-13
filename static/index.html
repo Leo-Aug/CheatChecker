@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>CheatChecker</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+</head>
+
+<body class="d-flex d-sm-flex align-items-center justify-content-sm-center align-items-sm-center"
+    style="background: var(--bs-gray-200);">
+    <div>
+        <div>
+            <h1>文本相似度检测器</h1>
+        </div>
+        <div>
+            <h4>选择两个文本文件，判断其余弦相似度</h4>
+        </div>
+        <div>
+            <form class="text-center" id="checkform" enctype="multipart/form-data" action="/checkfile"><input
+                    class="form-control" type="file" accept=".pdf, .doc, .docx" name="file1" required=""><input class="form-control" type="file" accept=".pdf, .doc, .docx"
+                    name="file2" required=""><textarea class="form-control form-control-sm" name="result" readonly=""
+                    style="text-align: center;">余弦相似度：</textarea><button class="btn btn-primary"
+                    type="submit">提交</button></form>
+        </div>
+    </div>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script>
+        $("#checkform").submit(function (e) {
+            e.preventDefault();
+            var formData = new FormData(document.getElementById("checkform"));
+            $.ajax({
+                url: "/checkfile",
+                type: "POST",
+                enctype: 'multipart/form-data',
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function (data) {
+                    $("textarea[name='result']").val("余弦相似度: " + data);
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

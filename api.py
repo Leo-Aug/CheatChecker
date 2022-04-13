@@ -2,6 +2,7 @@ from telnetlib import DO
 from typing import Optional
 
 from fastapi import FastAPI, UploadFile
+from fastapi.staticfiles import StaticFiles
 
 from pydantic import BaseModel
 
@@ -42,6 +43,9 @@ def check_cheat(file1: UploadFile, file2: UploadFile):
     比较两个文件的相似度
     """
     return compare_text(parse_text(file1), parse_text(file2))
+
+
+app.mount("/", StaticFiles(directory="static", html=True), name="static")
 
 
 if __name__ == "__main__":
