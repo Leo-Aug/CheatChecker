@@ -60,8 +60,10 @@ with sqlite3.connect(database_file) as con:
                 cur.execute('''
                     INSERT OR IGNORE INTO matrix  VALUES (?, ?, ?)
                 ''', (file2, file1, value))
+                
+                pbar.update(2)
             except Exception as e:
                 print(e)
-
-            pbar.update(2)
-    con.commit()
+            except KeyboardInterrupt:
+                con.commit()
+                break

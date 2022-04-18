@@ -9,3 +9,6 @@ __pycache__/
 
 # 忽略数据库文件
 *.db
+
+# 忽略debug文件
+debug.py
