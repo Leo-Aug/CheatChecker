@@ -20,6 +20,7 @@ PyYAML==6.0
 six==1.16.0
 sniffio==1.2.0
 starlette==0.17.1
+tqdm==4.64.0
 typing_extensions==4.1.1
 uvicorn==0.17.6
 uvloop==0.16.0
