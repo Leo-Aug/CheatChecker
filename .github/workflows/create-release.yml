@@ -25,10 +25,11 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
       
-      - name: PyInstaller Linux
-        uses: JackMcKew/pyinstaller-action-linux@0.1.4
+      - name: PyInstaller Build
+        uses: eric2788/pyinstaller-build@master
         with:
-          path: .
+          main: main
+          artifact: Program
 
 #       # 用Pyinstaller打包windows可执行文件
 #       - name: PyInstaller Windows
@@ -40,7 +41,7 @@ jobs:
       - name: Create Release
         uses: ncipollo/release-action@v1.10.0
         with:
-          artifacts: "dist/linux/main/*,dist/windows/*"
+          artifacts: "dist/*"
           tag: "v0.1"
           commit: "main"
 
