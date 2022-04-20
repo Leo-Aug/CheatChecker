@@ -30,11 +30,11 @@ jobs:
         with:
           path: .
 
-      # 用Pyinstaller打包windows可执行文件
-      - name: PyInstaller Windows
-        uses: JackMcKew/pyinstaller-action-windows@v0.1.2
-        with:
-          path: .
+#       # 用Pyinstaller打包windows可执行文件
+#       - name: PyInstaller Windows
+#         uses: JackMcKew/pyinstaller-action-windows@v0.1.2
+#         with:
+#           path: .
       
       # 创建一个Github Release
       - name: Create Release
