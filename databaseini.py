@@ -71,3 +71,40 @@ def init_system():
 
         print("文件数量：", cur.execute('''SELECT COUNT(*) FROM files''').fetchone()[0])
 
+def init_web_system(filelist_json):
+    with sqlite3.connect("webcheck_database.db") as con:
+        cur = con.cursor()
+
+        """ 
+        文件表
+        filename: 文件名
+        如果文件表不存在，则建表 
+        """
+        if not cur.execute(''' SELECT name FROM sqlite_master where name="files" ''').fetchall():
+            cur.execute(
+                '''CREATE TABLE files (filename TEXT PRIMARY KEY)''')
+
+        """ 
+        相似度矩阵表
+        row: 行
+        col: 列
+        value: 相似度
+        如果相似度矩阵表不存在，则建表 
+        """
+        if not cur.execute(''' SELECT name FROM sqlite_master where name="matrix" ''').fetchall():
+            cur.execute('''CREATE TABLE matrix (
+                row TEXT,
+                col TEXT,
+                value REAL,
+                FOREIGN KEY(row) REFERENCES files(filename),
+                FOREIGN KEY(col) REFERENCES files(filename),
+                CONSTRAINT unique_row_col PRIMARY KEY (row, col)
+                ) ''')
+        
+        # 将文件列表中的文件加入数据库
+        for file in filelist_json:
+            cur.execute('''INSERT OR IGNORE INTO files (filename) VALUES (?)''', (file,))
+    
+    json.dump(filelist_json, open("web_filelist.json", "w"))
+    return True
+
