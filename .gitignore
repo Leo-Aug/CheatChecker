@@ -12,3 +12,6 @@ __pycache__/
 
 # 忽略debug文件
 debug.py
+
+# 忽略表示数据的JSON文件
+web_filelist.json

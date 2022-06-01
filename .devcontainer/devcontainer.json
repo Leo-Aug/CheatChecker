@@ -30,7 +30,8 @@
 	"extensions": [
 		"vscjava.vscode-java-pack",
 		"GitHub.copilot",
-		"ms-python.python"
+		"ms-python.python",
+		"MS-CEINTL.vscode-language-pack-zh-hans"
 	],
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
