@@ -76,10 +76,17 @@ def get_process():
 def get_result(file1: str, file2: str):
     return get_check_results(file1, file2)
 
-
+@app.get("/filepairs")
+def get_file_pairs():
+    filepairs = []
+    for file1 in files:
+        for file2 in files:
+            if file1 != file2:
+                filepairs.append(get_check_results(file1, file2))
+    return filepairs
 
 app.mount("/", StaticFiles(directory="static", html=True), name="static")
 
 
 if __name__ == "__main__":
-    uvicorn.run(app="api:app", host="0.0.0.0", port=80)
+    uvicorn.run(app="api:app", host="0.0.0.0", port=8000)

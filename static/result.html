@@ -10,6 +10,29 @@
     <link rel="stylesheet" href="assets/css/Lista-Productos-Canito.css">
     <link rel="stylesheet" href="assets/css/Navbar-With-Button.css">
     <link rel="stylesheet" href="assets/css/styles.css">
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // 从 /filepairs 读取文件对，写入到 #resultlist 中
+            var html = "";
+            $.get("/filepairs", function(data, status) {
+                // 解析返回的JSON列表
+                if (data == "") {
+                    $("#resultlist").html("<p>暂无查重结果</p>");
+                } else {
+                    for (var i = 0; i < data.length; i++) {
+                        html += "<tr>";
+                        for(var j = 0; j < data[i].length; j++) {
+                            html += "<td>" + data[i][j] + "</td>";
+                        }
+                        html += "</tr>";
+                    }
+                    $("#resultlist").html(html);
+                }
+            });
+        });
+    </script>
+
 </head>
 
 <body>
@@ -42,7 +65,7 @@
                 <th>相似度</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody id="resultlist">
            
             <tr>
                 <td>Torta Mil Hojas</td>
