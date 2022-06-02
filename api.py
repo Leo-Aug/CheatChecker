@@ -54,6 +54,10 @@ def receive_file(filelist: List[UploadFile] = File(...)):
         files[file.filename] = parse_text(file)
     return True
 
+@app.get("/files")
+def get_files():
+    return list(files.keys())
+
 @app.get("/startcheck")
 def start_check():
     result_readable = False
