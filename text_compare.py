@@ -44,6 +44,11 @@ def compare_text(text1, text2):
     for word in worddict2:
         denominator2 += worddict2[word] ** 2
     denominator = (denominator1 ** 0.5) * (denominator2 ** 0.5)
+    
+    # 排除除数为0的情况
+    if denominator == 0:
+        return 0
+    
     return numerator / denominator
 
 
